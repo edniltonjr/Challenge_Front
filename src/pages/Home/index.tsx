@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
 import api from '../../services/api';
-import MaterialTable from 'material-table';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -13,30 +12,9 @@ import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+    minWidth: 300,
   },
 });
-
-const rows = {
-  CODIGO: 10,
-  STATUS: "SUCESSO",
-  RESULTADO: [
-    {
-      id: "1",
-      data: "01/06/2020",
-      hora: "07:36:33",
-      origem: "2032",
-      destino: "123",
-      tempo_total: "00:00:22",
-      sentido: "SAINTE",
-      codigo_usuario: "1234",
-      nome_usuario: "John DOe",
-      chave: "",
-      dnis: "",
-      status: "ENCERRADA"
-    }
-  ]
-};
 
 
 
@@ -112,33 +90,72 @@ const Home: React.FC = () => {
       });
   }, []);
 
-  console.log(crms)
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
-          {/* INTERAÇÃO COM OBJECT KEYS */}
           <TableRow>
-            {Object.keys(crms).map(item => (
-              <TableCell key={item}>sss</TableCell>
+            {crms[0] && Object.keys(crms[0]?.RESULTADO[0]).map(item => (
+              <TableCell key={item}>{item}</TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {crms.map(crms => (
-            <div>
-             {crms.RESULTADO.map((item) => (    
-            <TableRow key={item.id}>
-              <TableCell component="th" scope="row">
-                {item.id}
-              </TableCell>
-              <TableCell align="right">{item.cpf}</TableCell>
-              <TableCell align="right">{item.data}</TableCell>
-            </TableRow>
-          ))}
-          </div>
-
-          ))}
+        {crms &&
+            crms[0]?.RESULTADO.map(item => (
+              <TableRow key={item.id}>
+                <TableCell component="th" scope="row">
+                  {item.id}
+                </TableCell>
+                <TableCell align="right">{item.data}</TableCell>
+                <TableCell align="right">{item.hora}</TableCell>
+                <TableCell align="right">{item.origem}</TableCell>
+                <TableCell align="right">{item.destino}</TableCell>
+                <TableCell align="right">{item.tempo_total}</TableCell>
+                <TableCell align="right">{item.sentido}</TableCell>
+                <TableCell align="right">{item.codigo_usuario}</TableCell>
+                <TableCell align="right">{item.nome_usuario}</TableCell>
+                <TableCell align="right">{item.chave}</TableCell>
+                <TableCell align="right">{item.dnis}</TableCell>
+                <TableCell align="right">{item.status}</TableCell>
+                <TableCell align="right">{item.resultado}</TableCell>
+                <TableCell align="right">{item.cdr_disposition}</TableCell>
+                <TableCell align="right">{item.codigo_campanha}</TableCell>
+                <TableCell align="right">{item.nome_campanha}</TableCell>
+                <TableCell align="right">{item.codigo_tronco}</TableCell>
+                <TableCell align="right">{item.nome_tronco}</TableCell>
+                <TableCell align="right">{item.tipo_ligacao}</TableCell>
+                <TableCell align="right">{item.cadencia}</TableCell>
+                <TableCell align="right">{item.tarifa}</TableCell>
+                <TableCell align="right">{item.custo_ligacao}</TableCell>
+                <TableCell align="right">{item.tabulacao}</TableCell>
+                <TableCell align="right">{item.abordagem}</TableCell>
+                <TableCell align="right">{item.conversao}</TableCell>
+                <TableCell align="right">{item.gravacao_id}</TableCell>
+                <TableCell align="right">{item.mailing_id}</TableCell>
+                <TableCell align="right">{item.gravacao_inicio}</TableCell>
+                <TableCell align="right">{item.gravacao_arquivo}</TableCell>
+                <TableCell align="right">{item.amd_status}</TableCell>
+                <TableCell align="right">{item.hangup_cause}</TableCell>
+                <TableCell align="right">{item.origem_ligacao}</TableCell>
+                <TableCell align="right">{item.hora_finalizacao}</TableCell>
+                <TableCell align="right">{item.hora_encerramento}</TableCell>
+                <TableCell align="right">{item.ligacao_id}</TableCell>
+                <TableCell align="right">{item.codigo_conversao_nome}</TableCell>
+                <TableCell align="right">{item.cpf}</TableCell>
+                <TableCell align="right">{item.extension}</TableCell>
+                <TableCell align="right">{item.codigo_conversao_nome}</TableCell>
+                <TableCell align="right">{item.call_nome}</TableCell>
+                <TableCell align="right">{item.campolivre01}</TableCell>
+                <TableCell align="right">{item.asterisk_channel}</TableCell>
+                <TableCell align="right">{item.tempo_espera}</TableCell>
+                <TableCell align="right">{item.protocolo_atendimento}</TableCell>
+                <TableCell align="right">{item.obs_operador}</TableCell>
+                <TableCell align="right">{item.tempo_tarifado}</TableCell>
+                <TableCell align="right">{item.hora_dac}</TableCell>
+                <TableCell align="right">{item.hora_atendida}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
