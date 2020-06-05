@@ -5,5 +5,3 @@ const api = axios.create({
 });
 
 export default api;
-
-// compartilha a porta pra mim tb
